@@ -1,0 +1,40 @@
+{
+	"users": [
+		{
+			"id": 1,
+			"login": "root",
+			"password": "123qweASD",
+			"redisted_at": "2024-10-24",
+			"role_id": 0
+		}
+	],
+	"roles": [
+		{
+			"id": 0,
+			"name": "Администратор"
+		},
+		{
+			"id": 1,
+			"name": "Модератор"
+		},
+		{
+			"id": 2,
+			"name": "Читатель"
+		},
+		{
+			"id": 3,
+			"name": "Гость"
+		}
+	],
+	"posts": [
+		{
+			"id": 1,
+			"title": "",
+			"image_url": "",
+			"content": "",
+			"published_ad": ""
+		}
+	],
+	"comments": [],
+	"sessions": []
+}
