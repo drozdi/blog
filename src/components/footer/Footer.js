@@ -1,12 +1,19 @@
-import styled from 'styled-components';
-const FooterContainer = ({ className }) => <footer className={className}>footer</footer>;
+import classNames from 'classnames';
+import { Weather } from './weather/Weather';
 
-export const Footer = styled(FooterContainer)`
-	display: flex;
-	justify-content: space-between;
-	grid-column: 1 / span 3;
-	grid-row: 3 / span 1;
-	padding: 20px 40px;
-	background-color: #fff;
-	box-shadow: rgb(0, 0, 0) 0px 2px 17px;
-`;
+export function Footer({ className }) {
+	return (
+		<footer
+			className={classNames(
+				'flex justify-between items-center py-4 px-10 shadow-footer bg-white text-sm',
+				className,
+			)}
+		>
+			<div>
+				<div>Блог веб-разработчика</div>
+				<div>web@developer.ru</div>
+			</div>
+			<Weather />
+		</footer>
+	);
+}
