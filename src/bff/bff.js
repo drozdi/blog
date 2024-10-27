@@ -20,21 +20,23 @@ export const server = {
 			res: user,
 		};
 	},
-	async register (regLogin, regPassword) {
+	async register(regLogin, regPassword) {
 		const existedUser = await repUser.login(regLogin);
-	
+
 		if (existedUser) {
 			return {
 				error: 'Такой логин уже занят',
 				res: null,
 			};
 		}
-	
-		const user = await repUser.post({
-			login: regLogin,
-			password: regPassword,
-		}).then(res => res.json());
-	
+
+		const user = await repUser
+			.post({
+				login: regLogin,
+				password: regPassword,
+			})
+			.then((res) => res.json());
+
 		return {
 			error: null,
 			res: {
@@ -44,5 +46,5 @@ export const server = {
 				session: sessions.create(user),
 			},
 		};
-	};
+	},
 };
