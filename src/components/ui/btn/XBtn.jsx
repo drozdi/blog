@@ -2,49 +2,58 @@ import classNames from 'classnames';
 import './XBtn.scss';
 
 import { forwardRef, memo, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { useBtn } from '../../../hooks/useBtn';
+import { useXBtnGroupContext } from '../btnGroup';
 import { XIcon } from '../icon';
 
-export const XBtn = memo(
-	forwardRef(function XBtn(parametrs = {}, ref) {
-		const {
-			children,
-			className,
-			dimmed = false,
-			flat = false,
-			text = false,
-			tonal = false,
-			plain = false,
-			outline = false,
+const XBtnRoot = forwardRef(function XBtn(props = {}, ref) {
+	const parametrs = useXBtnGroupContext(props);
+	const {
+		children,
+		className,
+		dimmed = false,
+		flat = false,
+		text = false,
+		tonal = false,
+		plain = false,
+		outline = false,
 
-			round = false,
-			block = false,
-			square = false,
-			rounded = false,
-			disabled = false,
-			active = false,
+		round = false,
+		block = false,
+		square = false,
+		rounded = false,
+		disabled = false,
+		active = false,
 
-			icon,
-			iconRight,
-			color,
-			size,
-			value,
-		} = parametrs;
+		icon,
+		iconRight,
+		color,
+		size,
+		value,
 
-		let { isSelected: isSel, attrs } = useBtn({ ...parametrs, ref });
+		LinkComponent = Link,
+		target = '_self',
+		to,
+		href,
+	} = parametrs;
 
-		const isIcon = useMemo(
-			() =>
-				(!!icon != !!iconRight && !children) ||
-				(children?.type === XIcon && !icon && !iconRight),
-			[children, icon, iconRight],
-		);
-		const isSelected = useMemo(() => active || isSel, [isSel, active]);
+	let { isSelected: isSel, attrs, TagProp } = useBtn({ ...parametrs, ref });
 
-		return (
-			<button
-				{...attrs}
-				className={classNames('x-btn', {
+	const isIcon = useMemo(
+		() =>
+			(!!icon != !!iconRight && !children) ||
+			(children?.type === XIcon && !icon && !iconRight),
+		[children, icon, iconRight],
+	);
+	const isSelected = useMemo(() => active || isSel, [isSel, active]);
+
+	return (
+		<TagProp
+			{...attrs}
+			className={classNames(
+				'x-btn',
+				{
 					'x-btn--flat': flat,
 					'x-btn--text': text,
 					'x-btn--tonal': tonal,
@@ -59,23 +68,20 @@ export const XBtn = memo(
 					'x-btn--selected': isSelected,
 					[`x-btn--${color}`]: color,
 					[`x-btn--${size}`]: size,
-				})}
-			>
-				<div className="x-btn-outline"></div>
-				<div className="x-btn-backdor"></div>
-				{icon && <XIcon className={!isIcon && '-ml-2 mr-2'}>{icon}</XIcon>}
-				{children && (
-					<span className={classNames('x-btn-content', className)}>
-						{children}
-					</span>
-				)}
-				{iconRight && (
-					<XIcon className={!isIcon && 'ml-2 -mr-2'}>{iconRight}</XIcon>
-				)}
-			</button>
-		);
-	}),
-);
+				},
+				className,
+			)}
+		>
+			<div className="x-btn-outline"></div>
+			<div className="x-btn-backdor"></div>
+			{icon && <XIcon className={!isIcon && '-ml-2 mr-2'}>{icon}</XIcon>}
+			{children && <span className="x-btn-content">{children}</span>}
+			{iconRight && <XIcon className={!isIcon && 'ml-2 -mr-2'}>{iconRight}</XIcon>}
+		</TagProp>
+	);
+});
+
+export const XBtn = memo(XBtnRoot);
 
 /*XBtn.defaultProps = {
 	children: null,

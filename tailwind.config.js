@@ -16,7 +16,7 @@ module.exports = {
 				surface: '#15171e',
 				dark: '#15171e',
 				dimmed: 'rgba(0,0,0,0.2)',
-				separator: 'rgba(255, 255, 255, .15)',
+				separator: 'rgba(0, 0, 0, .15)',
 			},
 			borderRadius: {
 				inherit: 'inherit',

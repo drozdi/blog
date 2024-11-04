@@ -2,11 +2,13 @@
 	"name": "blog",
 	"version": "0.1.0",
 	"private": true,
+	"proxy": "http://92.118.114.155:3005",
 	"dependencies": {
 		"@mdi/font": "^7.4.47",
 		"@testing-library/jest-dom": "^5.17.0",
 		"@testing-library/react": "^13.4.0",
 		"@testing-library/user-event": "^13.5.0",
+		"axios": "^1.7.7",
 		"classnames": "^2.5.1",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-prettier": "^5.2.1",

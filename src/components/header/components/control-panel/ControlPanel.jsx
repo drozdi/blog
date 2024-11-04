@@ -1,19 +1,20 @@
 import { Link, useNavigate } from 'react-router-dom';
-import '../../../ui/btn/XBtn.scss';
-import { XIcon } from '../../../ui/icon/XIcon';
+import { XBtn, XIcon } from '../../../ui';
 export function ControlPanel() {
 	const navigate = useNavigate();
 	return (
 		<div className="flex flex-col gap-2">
-			<Link
-				className="!text-black x-btn x-btn--sm x-btn--plain x-btn--outline x-btn--block x-btn--tonal x-btn--flat"
+			<XBtn
+				size="sm"
+				outline={true}
+				tonal={true}
+				block={true}
+				flat={true}
 				to="/login"
 			>
-				<div className="x-btn-outline"></div>
-				<div className="x-btn-backdor"></div>
-				<span className="x-btn-content">Войти</span>
-			</Link>
-			<div className="flex gap-4 text-2xl">
+				Войти
+			</XBtn>
+			<div className="flex gap-4 text-2xl px-2">
 				<XIcon className="cursor-pointer" onClick={() => navigate(-1)}>
 					mdi-skip-backward
 				</XIcon>

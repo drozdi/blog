@@ -1,8 +1,11 @@
-import { Route, Routes } from 'react-router-dom';
-import { Footer, Header } from './components';
+import { useRoutes } from 'react-router-dom';
+import { routes } from './config/router';
 
 function App() {
-	return (
+	const routesElement = useRoutes(routes());
+	return routesElement;
+
+	/*return (
 		<div className="w-full h-full grid grid-cols-1 grid-rows-layout">
 			<Header className="row-start-1 row-end-2" />
 			<main className="row-start-2 row-end-3">
@@ -19,7 +22,7 @@ function App() {
 			</main>
 			<Footer className="row-start-3 row-end-4" />
 		</div>
-	);
+	);*/
 }
 
 export default App;
