@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { api } from '../../../api';
+import { XBtn, XInput } from '../../../components/ui';
 
 export const SignUpForm = () => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -20,33 +21,34 @@ export const SignUpForm = () => {
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className=" space-y-6 ">
 			<div className="mt-2">
-				<input
-					className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+				<XInput
+					outline={true}
+					label="Username"
+					placeholder="Username"
 					{...register('username', { required: true })}
-					placeholder="username"
 				/>
 			</div>
 			<div className="mt-2">
-				<input
-					className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+				<XInput
+					type="password"
+					outline={true}
+					label="Password"
+					placeholder="Password"
 					{...register('password', { required: true })}
-					placeholder="password"
 				/>
 			</div>
 			<div className="mt-2">
-				<input
-					{...register('email', { required: true })}
+				<XInput
+					type="email"
+					outline={true}
+					label="email"
 					placeholder="email"
-					className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+					{...register('email', { required: true })}
 				/>
 			</div>
-			<button
-				type="submit"
-				disabled={isLoading}
-				className="text-white font-bold py-2 px-4 rounded bg-blue-500"
-			>
+			<XBtn color="primary" type="submit" disabled={isLoading}>
 				{isLoading ? 'Loading...' : 'Sign Up'}
-			</button>
+			</XBtn>
 		</form>
 	);
 };
