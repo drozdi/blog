@@ -11,7 +11,9 @@ export function Footer({ className }) {
 		>
 			<div>
 				<div>Блог веб-разработчика</div>
-				<div>web@developer.ru</div>
+				<div>
+					<a href="mailto:web@developer.ru">web@developer.ru</a>
+				</div>
 			</div>
 			<Weather />
 		</footer>
