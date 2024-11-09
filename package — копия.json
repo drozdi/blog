@@ -2,8 +2,8 @@
 	"name": "blog",
 	"version": "0.1.0",
 	"private": true,
+	//"proxy": "http://92.118.114.155:3005",
 	"dependencies": {
-		"@hookform/resolvers": "^3.9.1",
 		"@mdi/font": "^7.4.47",
 		"@testing-library/jest-dom": "^5.17.0",
 		"@testing-library/react": "^13.4.0",

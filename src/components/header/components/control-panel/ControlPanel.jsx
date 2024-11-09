@@ -10,7 +10,7 @@ export function ControlPanel() {
 				tonal={true}
 				block={true}
 				flat={true}
-				to="/auth/signIn"
+				to="/login"
 			>
 				Войти
 			</XBtn>
