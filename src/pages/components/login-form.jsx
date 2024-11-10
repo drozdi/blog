@@ -1,9 +1,15 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 import * as yup from 'yup';
+import { setUser } from '../../actions';
+import { server } from '../../bff/bff';
 import { useToast } from '../../components/toast';
 import { XBtn, XInput } from '../../components/ui';
+import { ROLE } from '../../constants';
+import { selectUserRole } from '../../selectors';
 
 const loginFormSchema = yup.object().shape({
 	login: yup
@@ -12,26 +18,27 @@ const loginFormSchema = yup.object().shape({
 		.matches(/^\w+$/, 'Неверно заполнен логин. Допускаются только буквы и цифры')
 		.min(3, 'Неверно заполнен логин. Минимум 3 символа')
 		.max(15, 'Неверно заполнен логин. Максимум 15 символов'),
-	password: yup
-		.string()
-		.required('Заполните пароль')
-		.matches(
-			/^[\w#%]+$/,
-			'Неверно заполнен пароль. Допускаются буквы, цифры и знаки # %',
-		)
-		.min(6, 'Неверно заполнен пароль. Минимум 6 символов')
-		.max(30, 'Неверно заполнен пароль. Максимум 30 символов'),
+	password: yup.string().required('Заполните пароль'),
 });
 
 export const LoginForm = () => {
 	const toast = useToast();
 	const [isLoading, setIsLoading] = useState(false);
+	const dispatch = useDispatch();
+	const roleId = useSelector(selectUserRole);
+
+	console.log(roleId, ROLE);
+
+	if (roleId !== ROLE.GUEST) {
+		return <Navigate to="/" />;
+	}
 	const {
 		register,
 		handleSubmit,
 		reset,
 		formState: { errors },
 	} = useForm({
+		mode: 'onChange',
 		defaultValues: {
 			login: '',
 			password: '',
@@ -39,27 +46,36 @@ export const LoginForm = () => {
 		resolver: yupResolver(loginFormSchema),
 	});
 
-	const onSubmit = async (data) => {
+	const onSubmit = async ({ login, password }) => {
 		setIsLoading(true);
-		//const response = await api.post('auth/register', data);
-		//localStorage.setItem('token', response.data.accessToken);
-		setIsLoading(false);
-		toast.show({
-			children: 'Test 3',
-			color: 'negative',
-			icon: 'mdi-home',
+		server.autorize(login, password).then(({ error, res }) => {
+			setIsLoading(false);
+			if (error) {
+				toast.show({
+					children: error,
+					color: 'negative',
+				});
+				return;
+			}
+			dispatch(setUser(user));
 		});
 	};
 
+	const formError = errors?.login?.message || errors?.password?.message;
+
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className=" space-y-6 ">
+		<form onSubmit={handleSubmit(onSubmit)} className="space-y-6 ">
 			<div className="mt-2">
 				<XInput
+					type="text"
 					outline={true}
-					label="Username"
-					placeholder="Username"
-					{...register('username', { required: true })}
+					label="Login"
+					placeholder="Login"
+					{...register('login', { required: true })}
 				/>
+				{errors.login && (
+					<div className="text-negative max-w-64">{errors.login?.message}</div>
+				)}
 			</div>
 			<div className="mt-2">
 				<XInput
@@ -69,8 +85,13 @@ export const LoginForm = () => {
 					placeholder="Password"
 					{...register('password', { required: true })}
 				/>
+				{errors.password && (
+					<div className="text-negative max-w-64">
+						{errors.password?.message}
+					</div>
+				)}
 			</div>
-			<XBtn color="primary" type="submit" disabled={isLoading}>
+			<XBtn color="primary" type="submit" disabled={!!(isLoading || formError)}>
 				{isLoading ? 'Loading...' : 'Sign Up'}
 			</XBtn>
 			<XBtn text={true} flat={true} to="/registration">

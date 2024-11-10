@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { forwardRef, memo, useMemo } from 'react';
+import { forwardRef, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useBtn } from '../../../hooks/useBtn';
 import { useXBtnGroupContext } from '../btnGroup';
@@ -75,8 +75,6 @@ const XBtnRoot = forwardRef(function XBtn(params = {}, ref) {
 	);
 });
 
-export const XBtn = memo(XBtnRoot);
-
 XBtnRoot.defaultProps = {
 	children: null,
 	className: null,
@@ -105,7 +103,7 @@ XBtnRoot.defaultProps = {
 	href: undefined,
 };
 XBtnRoot.propTypes = {
-	children: PropTypes.oneOfType([PropTypes.node, PropTypes.element, PropTypes.string]),
+	children: PropTypes.any,
 	className: PropTypes.string,
 	dimmed: PropTypes.bool,
 	flat: PropTypes.bool,
@@ -122,15 +120,24 @@ XBtnRoot.propTypes = {
 	active: PropTypes.bool,
 	link: PropTypes.bool,
 
-	icon: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-	iconRight: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-	color: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-	size: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+	icon: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
+	iconRight: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
+	color: PropTypes.PropTypes.string,
+	size: PropTypes.PropTypes.string,
 	onClick: PropTypes.func,
 
 	value: PropTypes.any,
-	LinkComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+	LinkComponent: PropTypes.oneOfType([
+		PropTypes.any,
+		PropTypes.instanceOf(Link),
+		PropTypes.func,
+		PropTypes.element,
+		PropTypes.string,
+		PropTypes.node,
+	]),
 	target: PropTypes.string,
 	to: PropTypes.any,
 	href: PropTypes.any,
 }; //*/
+XBtnRoot.displayName = 'XBtn';
+export const XBtn = XBtnRoot;
