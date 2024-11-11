@@ -9,6 +9,7 @@ import { server } from '../../bff/bff';
 import { useToast } from '../../components/toast';
 import { XBtn, XInput } from '../../components/ui';
 import { ROLE } from '../../constants';
+import { useResetForm } from '../../hooks';
 import { selectUserRole } from '../../selectors';
 
 const loginFormSchema = yup.object().shape({
@@ -22,16 +23,6 @@ const loginFormSchema = yup.object().shape({
 });
 
 export const LoginForm = () => {
-	const toast = useToast();
-	const [isLoading, setIsLoading] = useState(false);
-	const dispatch = useDispatch();
-	const roleId = useSelector(selectUserRole);
-
-	console.log(roleId, ROLE);
-
-	if (roleId !== ROLE.GUEST) {
-		return <Navigate to="/" />;
-	}
 	const {
 		register,
 		handleSubmit,
@@ -45,6 +36,15 @@ export const LoginForm = () => {
 		},
 		resolver: yupResolver(loginFormSchema),
 	});
+	const toast = useToast();
+	const [isLoading, setIsLoading] = useState(false);
+	const dispatch = useDispatch();
+	useResetForm(reset);
+	const roleId = useSelector(selectUserRole);
+
+	if (roleId !== ROLE.GUEST) {
+		return <Navigate to="/" />;
+	}
 
 	const onSubmit = async ({ login, password }) => {
 		setIsLoading(true);
@@ -57,7 +57,8 @@ export const LoginForm = () => {
 				});
 				return;
 			}
-			dispatch(setUser(user));
+			sessionStorage.setItem('userData', JSON.stringify(res));
+			dispatch(setUser(res));
 		});
 	};
 

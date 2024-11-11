@@ -3,7 +3,7 @@ import { ROLE } from '../constants';
 const inititalState = {
 	id: null,
 	login: null,
-	roleId: ROLE.GUEST,
+	role_id: ROLE.GUEST,
 };
 export function userReducer(state = inititalState, action) {
 	switch (action.type) {
@@ -12,6 +12,8 @@ export function userReducer(state = inititalState, action) {
 				...state,
 				...action.payload,
 			};
+		case ACTION_TYPE.LOGOUT:
+			return inititalState;
 		default:
 			return state;
 	}

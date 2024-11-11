@@ -22,7 +22,7 @@ export const server = {
 	},
 	async register(regLogin, regPassword) {
 		const existedUser = await repUser.login(regLogin);
-
+		console.log(existedUser);
 		if (existedUser) {
 			return {
 				error: 'Такой логин уже занят',
@@ -42,8 +42,7 @@ export const server = {
 			res: {
 				id: user.id,
 				login: user.login,
-				roleId: user.role_id,
-				session: sessions.create(user),
+				role_id: user.role_id,
 			},
 		};
 	},
