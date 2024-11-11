@@ -21,9 +21,8 @@ export const server = {
 		};
 	},
 	async register(regLogin, regPassword) {
-		const existedUser = await repUser.login(regLogin);
-		console.log(existedUser);
-		if (existedUser) {
+		const existedUser = await repUser.login(regLogin).then((res) => res.json());
+		if (existedUser.length) {
 			return {
 				error: 'Такой логин уже занят',
 				res: null,
