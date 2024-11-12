@@ -1,6 +1,7 @@
 import { RootLayout } from '../components/layout/root-layout';
 import { Login } from '../pages/login';
 import { Registration } from '../pages/registration';
+import { UsersPage } from '../pages/users';
 
 export const routes = () => [
 	{
@@ -18,6 +19,10 @@ export const routes = () => [
 			{
 				path: 'registration',
 				element: <Registration />,
+			},
+			{
+				path: 'users',
+				element: <UsersPage />,
 			},
 			{
 				path: '/post',

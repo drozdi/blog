@@ -39,6 +39,14 @@ export class BaseRepository {
 			data: JSON.stringify(requestBody),
 		});
 	}
+	async patch(id = '', requestBody) {
+		return await this.query({
+			method: 'PATCH',
+			headers: { 'Content-Type': 'application/json;charset=utf-8' },
+			nestedEndpoint: `/${id}`,
+			data: JSON.stringify(requestBody),
+		});
+	}
 	async delete(id = '') {
 		return await this.query({
 			method: 'DELETE',

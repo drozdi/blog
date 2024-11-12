@@ -17,20 +17,13 @@ export function ControlPanel() {
 	return (
 		<div className="flex flex-col gap-2">
 			{roleId === ROLE.GUEST ? (
-				<XBtn
-					size="sm"
-					outline={true}
-					tonal={true}
-					block={true}
-					flat={true}
-					to="/login"
-				>
+				<XBtn size="sm" outline tonal block flat to="/login">
 					Войти
 				</XBtn>
 			) : (
 				<div className="flex justify-center items-center">
 					<div className="flex-1 text-center">{login}</div>
-					<XBtn flat={true} icon="mdi-logout" onClick={onLogout} />
+					<XBtn flat icon="mdi-logout" onClick={onLogout} />
 				</div>
 			)}
 

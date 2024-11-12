@@ -1,3 +1,4 @@
+import { ROLE } from '../constants';
 import { repUser } from './rep/user.js';
 export const server = {
 	async autorize(authLogin, authPassword) {
@@ -33,6 +34,11 @@ export const server = {
 			.post({
 				login: regLogin,
 				password: regPassword,
+				registered_at: new Date()
+					.toISOString()
+					.substring(0, 16)
+					.replace('T', ' '),
+				role_id: ROLE.READER,
 			})
 			.then((res) => res.json());
 

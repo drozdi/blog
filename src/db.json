@@ -4,13 +4,8 @@
       "id": 1,
       "login": "root",
       "password": "123qweASD",
-      "redisted_at": "2024-10-24",
+      "registered_at": "2024-10-24",
       "role_id": 0
-    },
-    {
-      "login": "root1",
-      "password": "123qweASD",
-      "id": 2
     }
   ],
   "roles": [

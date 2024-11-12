@@ -1,14 +1,16 @@
 import classNames from 'classnames';
 import './style.scss';
 export function XItemLabel({
+	tag = 'div',
 	children,
 	overline = false,
 	caption = false,
 	header = false,
 	lines = false,
 }) {
+	const Tag = tag;
 	return (
-		<div
+		<Tag
 			className={classNames('x-item__label', {
 				'x-item__label--overline': overline,
 				'x-item__label--caption': caption,
@@ -17,6 +19,6 @@ export function XItemLabel({
 			})}
 		>
 			{children}
-		</div>
+		</Tag>
 	);
 }

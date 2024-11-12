@@ -10,6 +10,7 @@ export function XBtnGroup(params = {}) {
 		vertical,
 		selected,
 		multiple,
+		separator,
 		onChange = () => {},
 		value,
 		...props
@@ -55,6 +56,7 @@ export function XBtnGroup(params = {}) {
 		<div
 			className={classNames('x-btn-group', className, {
 				'x-btn-group--vertical': vertical,
+				'x-btn-group--separator': separator,
 				'x-btn-group--round': props.round,
 			})}
 		>
