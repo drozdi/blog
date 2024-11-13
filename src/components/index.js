@@ -1,2 +1,4 @@
-export * from './footer/Footer';
+export * from './footer';
 export * from './header';
+export * from './loader';
+export * from './toast';

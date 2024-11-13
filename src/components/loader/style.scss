@@ -1,0 +1,14 @@
+.loader {
+	@apply absolute top-1/4 left-1/2 w-36 h-36 rounded-full border-10 border-primary border-l-transparent;
+	transform: translate(-50%, -50%);
+	animation: loader 1s infinite;
+}
+
+@keyframes loader {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}

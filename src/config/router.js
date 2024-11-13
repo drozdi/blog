@@ -1,5 +1,6 @@
 import { RootLayout } from '../components/layout/root-layout';
 import { Login } from '../pages/login';
+import { PostPage } from '../pages/post';
 import { Registration } from '../pages/registration';
 import { UsersPage } from '../pages/users';
 
@@ -29,15 +30,15 @@ export const routes = () => [
 				children: [
 					{
 						path: '',
-						element: <div>post</div>,
+						element: <PostPage />,
 					},
 					{
 						path: ':id',
-						element: <div>post</div>,
+						element: <PostPage />,
 					},
 					{
 						path: ':id/edit',
-						element: <div>post edit</div>,
+						element: <PostPage />,
 					},
 				],
 			},
