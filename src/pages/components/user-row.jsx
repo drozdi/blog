@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { repUser } from '../../bff/rep';
-import { XBtn, XBtnGroup, XItem, XItemSection } from '../../components/ui';
+import { XBtn, XItem, XItemSection } from '../../components/ui';
 export function UserRow({
 	login,
 	registered_at,
@@ -32,7 +32,7 @@ export function UserRow({
 				</select>
 			</XItemSection>
 			<XItemSection side>
-				<XBtnGroup round flat>
+				<XBtn.Group round flat>
 					<XBtn
 						icon="mdi-content-save-all"
 						title="Сохранить"
@@ -40,7 +40,7 @@ export function UserRow({
 						onClick={() => onRoleSave(id, selectedRoleId)}
 					/>
 					<XBtn icon="mdi-delete" onClick={onRemove} title="Удалить" />
-				</XBtnGroup>
+				</XBtn.Group>
 			</XItemSection>
 		</XItem>
 	);

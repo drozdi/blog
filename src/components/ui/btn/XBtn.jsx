@@ -3,34 +3,15 @@ import PropTypes from 'prop-types';
 import { forwardRef, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useBtn } from '../../../hooks/useBtn';
-import { useXBtnGroupContext } from '../btnGroup';
 import { XIcon } from '../icon';
+import { useXBtnGroupContext, XBtnGroup } from './Group';
 import './XBtn.scss';
 
 const XBtnRoot = forwardRef(function XBtn(params = {}, ref) {
 	const props = useXBtnGroupContext(params);
-	const {
-		children,
-		className,
-		dimmed,
-		flat,
-		text,
-		tonal,
-		plain,
-		outline,
-		round,
-		block,
-		square,
-		rounded,
-		active,
-		link,
-		icon,
-		iconRight,
-		color,
-		size,
-	} = props;
+	const { children, className, active, icon, iconRight, color, size } = props;
 
-	const { isSelected: isSel, attrs, TagProp } = useBtn({ ...props, ref });
+	const { isSelected, attrs, TagProp } = useBtn({ ...props, ref });
 
 	const isIcon = useMemo(
 		() =>
@@ -38,7 +19,7 @@ const XBtnRoot = forwardRef(function XBtn(params = {}, ref) {
 			(children?.type === XIcon && !icon && !iconRight),
 		[children, icon, iconRight],
 	);
-	const isSelected = useMemo(() => active || isSel, [isSel, active]);
+	const selected = useMemo(() => active || isSelected, [isSelected, active]);
 
 	return (
 		<TagProp
@@ -46,20 +27,19 @@ const XBtnRoot = forwardRef(function XBtn(params = {}, ref) {
 			className={classNames(
 				'x-btn',
 				{
-					'x-btn--flat': flat || link,
-					'x-btn--text': text,
-					'x-btn--tonal': tonal,
-					'x-btn--plain': plain,
-					'x-btn--outline': outline,
-					'x-btn--block': block,
-					'x-btn--square': square,
-					'x-btn--round': round,
-					'x-btn--rounded': rounded,
-					'x-btn--dimmed': dimmed,
+					'x-btn--flat': props.flat || props.link,
+					'x-btn--text': props.text,
+					'x-btn--tonal': props.tonal,
+					'x-btn--plain': props.plain,
+					'x-btn--outline': props.outline,
+					'x-btn--block': props.block,
+					'x-btn--square': props.square,
+					'x-btn--round': props.round,
+					'x-btn--rounded': props.rounded,
+					'x-btn--dimmed': props.dimmed,
+					'x-btn--link': props.link,
 					'x-btn--icon': isIcon,
-					'x-btn--link': link,
-
-					'x-btn--selected': isSelected,
+					'x-btn--selected': selected,
 					[`x-btn--${color}`]: color,
 					[`x-btn--${size}`]: size,
 				},
@@ -76,21 +56,11 @@ const XBtnRoot = forwardRef(function XBtn(params = {}, ref) {
 });
 
 XBtnRoot.defaultProps = {
-	children: null,
-	className: null,
-	icon: '',
-	iconRight: '',
-	color: '',
-	size: '',
-	onClick: () => {},
-	value: undefined,
 	LinkComponent: Link,
 	target: '_self',
-	to: undefined,
-	href: undefined,
 };
 XBtnRoot.propTypes = {
-	children: PropTypes.any,
+	children: PropTypes.oneOfType([PropTypes.node, PropTypes.element, PropTypes.string]),
 	className: PropTypes.string,
 	dimmed: PropTypes.bool,
 	flat: PropTypes.bool,
@@ -107,24 +77,18 @@ XBtnRoot.propTypes = {
 	active: PropTypes.bool,
 	link: PropTypes.bool,
 
-	icon: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
-	iconRight: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
-	color: PropTypes.PropTypes.string,
+	icon: PropTypes.string,
+	iconRight: PropTypes.string,
+	color: PropTypes.string,
 	size: PropTypes.PropTypes.string,
 	onClick: PropTypes.func,
 
 	value: PropTypes.any,
-	LinkComponent: PropTypes.oneOfType([
-		PropTypes.any,
-		PropTypes.instanceOf(Link),
-		PropTypes.func,
-		PropTypes.element,
-		PropTypes.string,
-		PropTypes.node,
-	]),
+	LinkComponent: PropTypes.any,
 	target: PropTypes.string,
 	to: PropTypes.any,
 	href: PropTypes.any,
 }; //*/
 XBtnRoot.displayName = 'XBtn';
 export const XBtn = XBtnRoot;
+XBtn.Group = XBtnGroup;

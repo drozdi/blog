@@ -13,8 +13,8 @@
 		@apply rounded-r-none;
 	}
 }
-.x-btn-group--separator {
-	&:not(:first-child) {
+.x-btn-group--separator:not(.x-btn-group--vertical) {
+	.x-btn:not(:first-child) {
 		.x-btn-outline {
 			@apply block border-l;
 		}
@@ -32,8 +32,8 @@
 		@apply rounded-b-none;
 	}
 }
-.x-btn-group--separator.x-btn-group--vertical {
-	&:not(:first-child) {
+.x-btn-group--vertical.x-btn-group--separator {
+	.x-btn:not(:first-child) {
 		.x-btn-outline {
 			@apply block border-t;
 		}

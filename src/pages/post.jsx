@@ -6,6 +6,7 @@ import { repPost } from '../bff/rep';
 import { Loader, useToast } from '../components';
 import { selectPost } from '../selectors';
 import { PostContent } from './components/post-content';
+import { PostForm } from './components/post-form';
 export function PostPage() {
 	const dispatch = useDispatch();
 	const [isLoading, setIsLoading] = useState(false);
@@ -33,7 +34,11 @@ export function PostPage() {
 	}
 	return (
 		<div className="flex items-center min-h-full flex-1 flex-col gap-4  ">
-			<PostContent post={post} />
+			{isCreating || isEditing ? (
+				<PostForm post={post} />
+			) : (
+				<PostContent post={post} />
+			)}
 		</div>
 	);
 }

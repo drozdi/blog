@@ -2,7 +2,16 @@
 const plugin = require('tailwindcss/plugin');
 module.exports = {
 	content: ['./public/index.html', './src/**/*.{js,jsx,ts,tsx}'],
-	safelist: [],
+	safelist: [
+		'text-primary',
+		'text-secondary',
+		'text-accent',
+		'text-positive',
+		'text-negative',
+		'text-info',
+		'text-warning',
+		'text-surface',
+	],
 	theme: {
 		extend: {
 			colors: {
