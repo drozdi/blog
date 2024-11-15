@@ -27,6 +27,7 @@ module.exports = {
 				dark: '#15171e',
 				dimmed: 'rgba(0,0,0,0.2)',
 				separator: 'rgba(0, 0, 0, .15)',
+				overlay: 'rgba(0, 0, 0, .7)',
 			},
 			borderRadius: {
 				inherit: 'inherit',

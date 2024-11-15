@@ -1,5 +1,6 @@
 import { RootLayout } from '../components/layout/root-layout';
 import { Login } from '../pages/login';
+import { MainPage } from '../pages/main';
 import { PostPage } from '../pages/post';
 import { Registration } from '../pages/registration';
 import { UsersPage } from '../pages/users';
@@ -11,7 +12,7 @@ export const routes = () => [
 		children: [
 			{
 				path: '',
-				element: <div>main</div>,
+				element: <MainPage />,
 			},
 			{
 				path: 'login',
@@ -41,6 +42,10 @@ export const routes = () => [
 						element: <PostPage />,
 					},
 				],
+			},
+			{
+				path: '404',
+				element: <div>Not Found</div>,
 			},
 		],
 	},

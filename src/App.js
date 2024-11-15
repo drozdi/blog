@@ -2,6 +2,7 @@ import { useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useRoutes } from 'react-router-dom';
 import { setUser } from './actions';
+import { Modal } from './components';
 import { ToastProvider } from './components/toast';
 import { routes } from './config/router';
 
@@ -18,7 +19,12 @@ function App() {
 	}, [dispatch]);
 
 	const routesElement = useRoutes(routes());
-	return <ToastProvider>{routesElement}</ToastProvider>;
+	return (
+		<ToastProvider>
+			<Modal />
+			{routesElement}
+		</ToastProvider>
+	);
 }
 
 export default App;

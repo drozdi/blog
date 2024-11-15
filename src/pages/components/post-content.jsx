@@ -1,19 +1,24 @@
-import { useNavigate } from 'react-router-dom';
+import { XBtn } from '../../components/ui';
 import { SpecialPanel } from './special-panel';
 export function PostContent({
 	className,
 	post: { id, title, image_url, content, published_at },
 }) {
-	const navigate = useNavigate();
-
 	return (
 		<div className={className}>
 			<h2 className="font-bold text-2xl my-10">{title}</h2>
 			<img className="float-left mr-4" src={image_url} alt={title} />
 			<SpecialPanel
-				className="-mt-5 mx-0 mb-5"
+				className="m-5"
 				id={id}
 				publishedAt={published_at}
+				prepend={
+					<XBtn
+						icon="mdi-pencil-box-outline"
+						to={`/post/${id}/edit`}
+						title="Редактировать"
+					/>
+				}
 			/>
 			<div className="text-lg whitespace-pre-line">{content}</div>
 		</div>
