@@ -50,16 +50,20 @@ export function MainPage() {
 	}
 
 	return (
-		<div className="flex flex-col justify-between">
-			<Search searchPhrase={search} onChange={onSearch} />
+		<div className="flex flex-col justify-between items-center px-5 gap-5">
+			<Search
+				className="w-full max-w-md"
+				searchPhrase={search}
+				onChange={onSearch}
+			/>
 			{posts.length ? (
-				<div className="flex flex-wrap p-5">
+				<div className="flex flex-wrap justify-center m-auto">
 					{posts.map((post) => (
 						<PostCard key={post.id} {...post} />
 					))}
 				</div>
 			) : (
-				<div className="text-center mt-10 text-xl">Статьи не найдены</div>
+				<div className="text-center text-2xl">Статьи не найдены</div>
 			)}
 			<Pagination
 				setPage={setPage}

@@ -1,4 +1,5 @@
 import { RootLayout } from '../components/layout/root-layout';
+import { ERROR } from '../constants';
 import { Login } from '../pages/login';
 import { MainPage } from '../pages/main';
 import { PostPage } from '../pages/post';
@@ -45,12 +46,22 @@ export const routes = () => [
 			},
 			{
 				path: '404',
-				element: <div>Not Found</div>,
+				element: (
+					<div className="flex flex-col items-center text-xl">
+						<h2 className="text-2xl">Ошибка</h2>
+						<div>{ERROR.PAGE_NOT_EXIST}</div>
+					</div>
+				),
 			},
 		],
 	},
 	{
 		path: '*',
-		element: <div>Not Found</div>,
+		element: (
+			<div className="flex flex-col items-center text-xl">
+				<h2 className="text-2xl">Ошибка</h2>
+				<div>{ERROR.PAGE_NOT_EXIST}</div>
+			</div>
+		),
 	},
 ];

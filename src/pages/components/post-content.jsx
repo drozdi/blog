@@ -1,12 +1,9 @@
 import { XBtn } from '../../components/ui';
 import { SpecialPanel } from './special-panel';
-export function PostContent({
-	className,
-	post: { id, title, image_url, content, published_at },
-}) {
+export function PostContent({ post: { id, title, image_url, content, published_at } }) {
 	return (
-		<div className={className}>
-			<h2 className="font-bold text-2xl my-10">{title}</h2>
+		<div className="max-w-4xl m-auto px-5">
+			<h2 className="font-bold text-2xl mb-5">{title}</h2>
 			<img className="float-left mr-4" src={image_url} alt={title} />
 			<SpecialPanel
 				className="m-5"

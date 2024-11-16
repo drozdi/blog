@@ -2,20 +2,28 @@ import { XBtn } from '../../components/ui';
 
 export function Pagination({ setPage, page, lastPage, limit, setLimit }) {
 	return (
-		<div className="w-full flex justify-between px-9">
-			<XBtn disabled={page === 1} onClick={() => setPage(1)}>
+		<div className="flex justify-between w-full max-w-4xl m-auto px-5">
+			<XBtn size="sm" disabled={page === 1} onClick={() => setPage(1)}>
 				В начало
 			</XBtn>
-			<XBtn disabled={page === 1} onClick={() => setPage(page - 1)}>
+			<XBtn size="sm" disabled={page === 1} onClick={() => setPage(page - 1)}>
 				Предыдущая
 			</XBtn>
-			<XBtn flat active>
+			<XBtn size="sm" flat active>
 				Страница: {page}
 			</XBtn>
-			<XBtn disabled={page === lastPage} onClick={() => setPage(page + 1)}>
+			<XBtn
+				size="sm"
+				disabled={page === lastPage}
+				onClick={() => setPage(page + 1)}
+			>
 				Следующая
 			</XBtn>
-			<XBtn disabled={page === lastPage} onClick={() => setPage(lastPage)}>
+			<XBtn
+				size="sm"
+				disabled={page === lastPage}
+				onClick={() => setPage(lastPage)}
+			>
 				В конец
 			</XBtn>
 			<select

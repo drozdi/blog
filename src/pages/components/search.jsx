@@ -1,12 +1,15 @@
-import { XInput } from '../../components/ui';
-export function Search({ search, onChange }) {
+import { XIcon, XInput } from '../../components/ui';
+export function Search({ className, search, onChange }) {
 	return (
-		<XInput
-			value={search}
-			onChange={onChange}
-			outline
-			label="Найти"
-			placeholder="Что ищим?"
-		/>
+		<div className={className}>
+			<XInput
+				value={search}
+				onChange={onChange}
+				outline
+				label="Найти"
+				placeholder="Что ищим?"
+				append={<XIcon className="text-3xl">mdi-magnify</XIcon>}
+			/>
+		</div>
 	);
 }

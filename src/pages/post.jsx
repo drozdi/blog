@@ -28,7 +28,7 @@ export function PostPage() {
 		}
 		dispatch(loadPost(repPost, id)).then((post) => {
 			if (!post.id) {
-				toast.show({
+				toast.show?.({
 					children: 'Статья не найдена',
 					color: 'negative',
 				});
@@ -36,12 +36,12 @@ export function PostPage() {
 			}
 			setIsLoading(false);
 		});
-	}, [isCreating, dispatch, id]);
+	}, [isCreating, dispatch, toast, id]);
 	if (isLoading) {
 		return <Loader />;
 	}
 	return (
-		<div className="flex items-center min-h-full flex-1 flex-col">
+		<div className="flex flex-col items-center justify-between min-h-full ">
 			{isCreating || isEditing ? (
 				<PrivateContent access={[ROLE.ADMIN]}>
 					<PostForm post={post} />

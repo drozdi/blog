@@ -32,7 +32,7 @@ export function PostForm({ post: { id, title, image_url, content, published_at }
 		});
 	};
 	return (
-		<div className="w-full">
+		<div className="max-w-4xl w-full m-auto px-5">
 			<XInput
 				onChange={({ target }) => setImageUrlValue(target.value)}
 				name="image_url"
@@ -64,11 +64,29 @@ export function PostForm({ post: { id, title, image_url, content, published_at }
 			/>
 			<div
 				ref={contentRef}
-				className="p-4 border border-separator rounded"
+				className="p-4 border min-h-56 border-separator rounded"
 				contentEditable={true}
 				suppressContentEditableWarning={true}
 			>
 				{content}
+			</div>
+			<div className="flex gap-4 justify-center mt-4">
+				<XBtn
+					color="positive"
+					iconRight="mdi-content-save-edit"
+					onClick={onSave}
+					title="Сохранить"
+				>
+					Сохранить
+				</XBtn>
+				<XBtn
+					color="secondary"
+					onClick={onSave}
+					title="Назад"
+					onClick={() => navigate(-1)}
+				>
+					Назад
+				</XBtn>
 			</div>
 		</div>
 	);

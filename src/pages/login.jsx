@@ -2,9 +2,9 @@ import { LoginForm } from './components/login-form';
 
 export function Login() {
 	return (
-		<div className="flex justify-center items-center min-h-full flex-1 flex-col gap-4  ">
+		<div className="flex flex-col justify-center items-center gap-4 min-h-full max-w-2xl m-auto">
 			<h1 className="text-2xl">Авторизация</h1>
-			<div className="border border-gray-300 py-5 px-5 max-w-96">
+			<div className="border border-gray-300 p-5 w-full max-w-sm">
 				<LoginForm />
 			</div>
 		</div>
