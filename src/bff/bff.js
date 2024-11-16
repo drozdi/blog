@@ -1,5 +1,5 @@
+import { repUser } from '../api/rep';
 import { ROLE } from '../constants';
-import { repUser } from './rep/user.js';
 export const server = {
 	async autorize(authLogin, authPassword) {
 		const users = await repUser.list().then((res) => res.json());

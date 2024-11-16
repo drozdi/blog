@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { closeModal, openModal, removePost } from '../../actions';
-import { repPost } from '../../bff/rep';
+import { repComment, repPost } from '../../api/rep';
 import { XBtn, XIcon } from '../../components/ui';
 import { ROLE } from '../../constants';
 import { selectUserRole } from '../../selectors';
@@ -16,7 +16,7 @@ export function SpecialPanel({ className, publishedAt, id, prepend }) {
 			openModal({
 				text: 'Удалить статью?',
 				onConfirm: () => {
-					dispatch(removePost(repPost, id)).then(() => {
+					dispatch(removePost(repPost, id, repComment)).then(() => {
 						navigate('/');
 					});
 					dispatch(closeModal());

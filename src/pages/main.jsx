@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 
-import { repComment, repPost } from '../bff/rep';
+import { repComment, repPost } from '../api/rep';
 import { Loader } from '../components';
 import { debounce } from '../utils/debounce';
 import { Pagination } from './components/pagination';

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { repRole, repUser } from '../bff/rep';
+import { repRole, repUser } from '../api/rep';
 import { Loader, PrivateContent, useToast } from '../components';
 import { XItem, XItemLabel, XItemSection, XList } from '../components/ui';
 import { ROLE } from '../constants';

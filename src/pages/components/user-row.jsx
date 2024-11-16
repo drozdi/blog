@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { repUser } from '../../bff/rep';
+import { repUser } from '../../api/rep';
 import { XBtn, XItem, XItemSection } from '../../components/ui';
 export function UserRow({
 	login,

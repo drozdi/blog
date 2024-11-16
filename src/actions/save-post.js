@@ -1,5 +1,5 @@
+import { genDate } from '../utils/gen-date';
 import { setPost } from './set-post';
-
 export const savePost = (rep, post) => (dispatch) => {
 	return post.id
 		? rep.patch(post.id, post).then(() => {
@@ -9,10 +9,7 @@ export const savePost = (rep, post) => (dispatch) => {
 		: rep
 				.post({
 					...post,
-					published_at: new Date()
-						.toISOString()
-						.substring(0, 16)
-						.replace('T', ' '),
+					published_at: genDate(),
 				})
 				.then((res) => res.json())
 				.then((data) => {
