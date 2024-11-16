@@ -20,6 +20,20 @@
       "registered_at": "2024-11-16 12:13",
       "role_id": 1,
       "id": 3
+    },
+    {
+      "login": "admin4",
+      "password": "123qweASD",
+      "registered_at": "2024-11-16 12:35",
+      "role_id": 2,
+      "id": 4
+    },
+    {
+      "login": "admin5",
+      "password": "123qweASD",
+      "registered_at": "2024-11-16 12:41",
+      "role_id": 2,
+      "id": 5
     }
   ],
   "roles": [

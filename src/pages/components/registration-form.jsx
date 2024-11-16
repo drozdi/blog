@@ -1,8 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { setUser } from '../../actions';
 import { server } from '../../bff/bff';
@@ -49,17 +48,11 @@ export const RegistrationForm = () => {
 	});
 	const toast = useToast();
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	useResetForm(reset);
 	const roleId = useSelector(selectUserRole);
-	if (roleId !== ROLE.GUEST) {
-		return <Navigate to="/" />;
-	}
-
-	const [isLoading, setIsLoading] = useState(false);
 	const onSubmit = async ({ login, password }) => {
-		setIsLoading(true);
 		server.register(login, password).then(({ error, res }) => {
-			setIsLoading(false);
 			if (error) {
 				toast.show({
 					children: error,
@@ -69,8 +62,12 @@ export const RegistrationForm = () => {
 			}
 			dispatch(setUser(res));
 			sessionStorage.setItem('userData', JSON.stringify(res));
+			navigate('/');
 		});
 	};
+	if (roleId !== ROLE.GUEST) {
+		return <Navigate to="/" />;
+	}
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className=" space-y-6 ">
 			<div className="mt-2">
@@ -112,8 +109,8 @@ export const RegistrationForm = () => {
 					</div>
 				)}
 			</div>
-			<XBtn color="primary" type="submit" disabled={isLoading}>
-				{isLoading ? 'Loading...' : 'Sign Up'}
+			<XBtn color="primary" type="submit">
+				Sign Up
 			</XBtn>
 		</form>
 	);

@@ -93,7 +93,7 @@ export const LoginForm = () => {
 				)}
 			</div>
 			<XBtn color="primary" type="submit" disabled={!!(isLoading || formError)}>
-				{isLoading ? 'Loading...' : 'Sign Up'}
+				{isLoading ? 'Loading...' : 'Sign In'}
 			</XBtn>
 			<XBtn text={true} flat={true} to="/registration">
 				Регистрация

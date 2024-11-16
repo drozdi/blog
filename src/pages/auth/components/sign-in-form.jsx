@@ -37,7 +37,7 @@ export const SignInForm = () => {
 				/>
 			</div>
 			<XBtn color="primary" type="submit" disabled={isLoading}>
-				{isLoading ? 'Loading...' : 'Sign Up'}
+				{isLoading ? 'Loading...' : 'Sign In'}
 			</XBtn>
 			<XBtn text={true} flat={true} to="/auth/signUp">
 				Регистрация
