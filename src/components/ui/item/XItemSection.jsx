@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { useMemo } from 'react';
-import './style.scss';
+import './style.css';
 export function XItemSection({
 	children,
 	side = false,

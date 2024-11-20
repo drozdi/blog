@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { memo, useMemo } from 'react';
-import './style.scss';
+import { Link } from 'react-router-dom';
+import './style.css';
 const clickableTag = ['a', 'label'];
 const disRoleTag = ['label'];
 const disDisabledTag = ['div', 'span', 'a', 'label'];
@@ -10,24 +11,27 @@ export const XItem = memo(function XItem({
 	className,
 	children,
 	tabIndex = 0,
-	dense = false,
-	active = false,
+	dense,
+	active,
 	activeClass,
-	disabled = false,
-	role = null,
-	onClick = null,
-	LinkComponent = 'a',
+	disabled,
+	role,
+	onClick,
+	LinkComponent = Link,
 	to,
 	href,
 	target = '_self',
 }) {
-	const TagProp = useMemo(() => (to || href ? LinkComponent : tag), [to, tag]);
+	const TagProp = useMemo(
+		() => (to || href ? LinkComponent : tag),
+		[to, href, tag, LinkComponent],
+	);
 	const isActionable = useMemo(
 		() =>
 			clickableTag.includes(TagProp) ||
 			TagProp === LinkComponent ||
 			typeof onClick === 'function',
-		[TagProp, onClick],
+		[TagProp, LinkComponent, onClick],
 	);
 	const isClickable = useMemo(
 		() => !disabled && isActionable,
@@ -68,6 +72,9 @@ export const XItem = memo(function XItem({
 		return attrs;
 	}, [
 		disabled,
+		to,
+		href,
+		target,
 		tabIndex,
 		role,
 		dense,

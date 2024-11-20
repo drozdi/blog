@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { createElement as h, useMemo } from 'react';
-import './style.scss';
+import './style.css';
 
 const roleAttrExceptions = ['ul', 'ol'];
 export function XList({

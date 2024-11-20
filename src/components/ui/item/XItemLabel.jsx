@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import './style.scss';
+import './style.css';
 export function XItemLabel({
 	tag = 'div',
 	children,
