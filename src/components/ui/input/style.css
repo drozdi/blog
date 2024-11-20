@@ -45,17 +45,15 @@
 	@apply text-[0.8em] top-4;
 }
 
-.x-input--dense {
-	.x-input-native {
-		@apply pt-3 pb-1;
-	}
-	.x-input-native:focus ~ .x-input-label,
-	.x-input-native:not(:placeholder-shown) ~ .x-input-label {
-		@apply text-[0.8em] top-2;
-	}
-	.x-input-control:not(:has(*.x-input-label)) .x-input-native {
-		@apply py-2;
-	}
+.x-input--dense .x-input-native {
+	@apply pt-3 pb-1;
+}
+.x-input--dense .x-input-native:focus ~ .x-input-label,
+.x-input--dense .x-input-native:not(:placeholder-shown) ~ .x-input-label {
+	@apply text-[0.8em] top-2;
+}
+.x-input--dense .x-input-control:not(:has(*.x-input-label)) .x-input-native {
+	@apply py-2;
 }
 .x-input--dense.x-input--stack-label .x-input-native ~ .x-input-label {
 	@apply text-[0.8em] top-2;
@@ -97,33 +95,37 @@
 	@apply flex;
 }
 
-.x-input--outline.x-input--dense {
-	.x-input-control .x-input-native {
-		@apply py-2;
-	}
-	.x-input-control:has(input:focus) .x-input-label,
-	.x-input-control:has(input:not(:placeholder-shown)) .x-input-label {
-		@apply top-0 ml-4;
-	}
-
-	.x-input-control:has(input:focus) ~ .x-input-outline > .x-input-outline-notch,
+.x-input--outline.x-input--dense .x-input-control .x-input-native {
+	@apply py-2;
+}
+.x-input--outline.x-input--dense .x-input-control:has(input:focus) .x-input-label,
+.x-input--outline.x-input--dense
 	.x-input-control:has(input:not(:placeholder-shown))
-		~ .x-input-outline
-		> .x-input-outline-notch {
-		@apply border-t-transparent;
-	}
+	.x-input-label {
+	@apply top-0 ml-4;
 }
 
-.x-input--dense.x-input--outline.x-input--stack-label {
-	.x-input-control .x-input-native {
-		@apply py-2;
-	}
-	.x-input-control .x-input-label {
-		@apply top-0 ml-4;
-	}
-	.x-input-outline .x-input-outline-notch {
-		@apply border-t-transparent;
-	}
+.x-input--outline.x-input--dense
+	.x-input-control:has(input:focus)
+	~ .x-input-outline
+	> .x-input-outline-notch,
+.x-input--outline.x-input--dense
+	.x-input-control:has(input:not(:placeholder-shown))
+	~ .x-input-outline
+	> .x-input-outline-notch {
+	@apply border-t-transparent;
+}
+
+.x-input--dense.x-input--outline.x-input--stack-label .x-input-control .x-input-native {
+	@apply py-2;
+}
+.x-input--dense.x-input--outline.x-input--stack-label .x-input-control .x-input-label {
+	@apply top-0 ml-4;
+}
+.x-input--dense.x-input--outline.x-input--stack-label
+	.x-input-outline
+	.x-input-outline-notch {
+	@apply border-t-transparent;
 }
 
 .x-input--square {
@@ -150,14 +152,57 @@
 .x-input--field .x-input-backdor {
 	@apply block;
 }
-
-$colors: primary, secondary, accent, positive, negative, info, warning, surface, dark;
-
-@each $color in $colors {
-	.x-input--#{$color}:has(input:focus) {
-		@apply border-#{$color};
-	}
-	.x-input--#{$color} .x-input-backdor {
-		@apply text-#{$color};
-	}
+.x-input--primary:has(input:focus) {
+	@apply border-primary;
+}
+.x-input--primary .x-input-backdor {
+	@apply text-primary;
+}
+.x-input--secondary:has(input:focus) {
+	@apply border-secondary;
+}
+.x-input--secondary .x-input-backdor {
+	@apply text-secondary;
+}
+.x-input--accent:has(input:focus) {
+	@apply border-accent;
+}
+.x-input--accent .x-input-backdor {
+	@apply text-accent;
+}
+.x-input--positive:has(input:focus) {
+	@apply border-positive;
+}
+.x-input--positive .x-input-backdor {
+	@apply text-positive;
+}
+.x-input--negative:has(input:focus) {
+	@apply border-negative;
+}
+.x-input--negative .x-input-backdor {
+	@apply text-negative;
+}
+.x-input--info:has(input:focus) {
+	@apply border-info;
+}
+.x-input--info .x-input-backdor {
+	@apply text-info;
+}
+.x-input--warning:has(input:focus) {
+	@apply border-warning;
+}
+.x-input--warning .x-input-backdor {
+	@apply text-warning;
+}
+.x-input--surface:has(input:focus) {
+	@apply border-surface;
+}
+.x-input--surface .x-input-backdor {
+	@apply text-surface;
+}
+.x-input--dark:has(input:focus) {
+	@apply border-dark;
+}
+.x-input--dark .x-input-backdor {
+	@apply text-dark;
 }

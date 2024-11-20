@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useBtn } from '../../../hooks/useBtn';
 import { XIcon } from '../icon';
 import { useXBtnGroupContext, XBtnGroup } from './Group';
-import './XBtn.scss';
+import './style.css';
 
 const XBtnRoot = forwardRef(function XBtn(params = {}, ref) {
 	const props = useXBtnGroupContext(params);
@@ -15,7 +15,7 @@ const XBtnRoot = forwardRef(function XBtn(params = {}, ref) {
 
 	const isIcon = useMemo(
 		() =>
-			(!!icon != !!iconRight && !children) ||
+			(!!icon !== !!iconRight && !children) ||
 			(children?.type === XIcon && !icon && !iconRight),
 		[children, icon, iconRight],
 	);

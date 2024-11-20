@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { useCallback, useEffect, useState } from 'react';
-import './XBtnGroup.scss';
+import './style.css';
 import { XBtnGroupContext } from './XBtnGroupContext';
 
 export function XBtnGroup(params = {}) {
@@ -44,8 +44,8 @@ export function XBtnGroup(params = {}) {
 		} else {
 			setCurrent(multiple ? [] : undefined);
 		}
-	}, [multiple]);
-	useEffect(() => onChange(current), [current]);
+	}, [multiple, current]);
+	useEffect(() => onChange(current), [current, onChange]);
 
 	const context = {
 		...props,
