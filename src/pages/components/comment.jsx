@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { closeModal, openModal, removeComment } from '../../actions';
 import { repComment } from '../../api/rep';
 import { XBtn, XIcon } from '../../components/ui';
@@ -8,7 +7,6 @@ import { selectUserRole } from '../../selectors';
 
 export function Comment({ post_id, id, author, content, published_at }) {
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
 	const userRole = useSelector(selectUserRole);
 	const isAdminOrModerator = [ROLE.ADMIN, ROLE.MODERATOR].includes(userRole);
 	const onCommentRemove = () => {

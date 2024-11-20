@@ -24,7 +24,6 @@ export function MainPage() {
 			const res = await repPost.find(search, page, limit);
 			setLastPage(getLastPageFromLinks(res.headers.get('link') || ''));
 
-			//;
 			const posts = await res.json();
 			const comments = await repComment.list().then((res) => res.json());
 
@@ -39,7 +38,7 @@ export function MainPage() {
 			setIsLoading(false);
 		}
 		fetchData();
-	}, [page, limit, startSearch]);
+	}, [page, limit, startSearch, search]);
 	const startDelayedSearch = useMemo(() => debounce(setStartSearch, 2000), []);
 	const onSearch = ({ target }) => {
 		setSearch(target.value);

@@ -13,7 +13,6 @@ export function Comments({ comments, postId }) {
 	const userRole = useSelector(selectUserRole);
 	const dispatch = useDispatch();
 	const isGuest = userRole === ROLE.GUEST;
-	const [users, setUsers] = useState([]);
 	useEffect(() => {}, []);
 	const onNewCommentAdd = (content) => {
 		dispatch(

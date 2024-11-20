@@ -4,7 +4,7 @@ export const useTimeout = (fn, delay = 0, when = true) => {
 	const timeout = useRef(null);
 	const savedCallback = useRef(null);
 
-	const clear = useCallback(() => clearTimeout(timeout.current), [timeout.current]);
+	const clear = useCallback(() => clearTimeout(timeout.current), [timeout]);
 
 	useEffect(() => {
 		savedCallback.current = fn;
@@ -21,9 +21,9 @@ export const useTimeout = (fn, delay = 0, when = true) => {
 		} else {
 			clear();
 		}
-	}, [delay, when]);
+	}, [delay, when, timeout, clear]);
 
-	useEffect(() => clear, []);
+	useEffect(() => clear, [clear]);
 
 	return [clear];
 };

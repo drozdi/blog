@@ -17,5 +17,5 @@ export function useForkRef(...refs) {
 				setRef(ref, instance);
 			});
 		};
-	}, refs);
+	}, [refs]);
 }

@@ -18,7 +18,6 @@ export function PostPage() {
 	const post = useSelector(selectPost);
 	const toast = useToast();
 	const navigate = useNavigate();
-	const [comments, setComments] = useState([]);
 	useLayoutEffect(() => {
 		dispatch(resetPost());
 	}, [dispatch, isCreating]);
@@ -46,7 +45,7 @@ export function PostPage() {
 			dispatch(setPost(post));
 			setIsLoading(false);
 		});
-	}, [isCreating, dispatch, toast, id]);
+	}, [isCreating, dispatch, toast, id, navigate]);
 	if (isLoading) {
 		return <Loader />;
 	}

@@ -79,12 +79,7 @@ export function PostForm({ post: { id, title, image_url, content, published_at }
 				>
 					Сохранить
 				</XBtn>
-				<XBtn
-					color="secondary"
-					onClick={onSave}
-					title="Назад"
-					onClick={() => navigate(-1)}
-				>
+				<XBtn color="secondary" title="Назад" onClick={() => navigate(-1)}>
 					Назад
 				</XBtn>
 			</div>
