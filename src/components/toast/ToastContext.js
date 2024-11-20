@@ -13,8 +13,9 @@ export const ToastContext = createContext({
 });
 
 export function useToast() {
-	if (useContext(ToastContext)?.current) {
-		return useContext(ToastContext).current;
+	const context = useContext(ToastContext);
+	if (context?.current) {
+		return context.current;
 	}
-	return useContext(ToastContext);
+	return context;
 }

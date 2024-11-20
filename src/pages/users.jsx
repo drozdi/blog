@@ -34,7 +34,7 @@ export const UsersPage = () => {
 		if (![ROLE.ADMIN].includes(roleId)) {
 			return;
 		}
-		const result = confirm('Удалить пользователя?');
+		const result = window.confirm('Удалить пользователя?');
 		if (result === true) {
 			repUser.delete(id).then(() => setReload(!reload));
 		}

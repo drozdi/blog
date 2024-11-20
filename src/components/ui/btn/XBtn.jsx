@@ -88,7 +88,7 @@ XBtnRoot.propTypes = {
 	target: PropTypes.string,
 	to: PropTypes.any,
 	href: PropTypes.any,
-}; //*/
+};
 XBtnRoot.displayName = 'XBtn';
 export const XBtn = XBtnRoot;
 XBtn.Group = XBtnGroup;
