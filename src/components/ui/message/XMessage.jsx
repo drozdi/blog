@@ -6,7 +6,7 @@ import { XBtn } from '../btn';
 import { XIcon } from '../icon';
 import { useXMessagesContext } from '../messages/XMessagesContext';
 import { useXToastContext } from '../toast/XToastContext';
-import './style.scss';
+import './style.css';
 
 export const XMessage = memo(
 	forwardRef(
@@ -40,16 +40,8 @@ export const XMessage = memo(
 			const context = useXMessagesContext();
 			const isClosable = useMemo(
 				() => (closable || sticky) && context,
-				[closable, context],
+				[closable, sticky, context],
 			);
-			const handleClose = useCallback((event) => {
-				clearTimer();
-				context?.remove(_pId);
-				if (event) {
-					event.preventDefault();
-					event.stopPropagation();
-				}
-			}, []);
 			const [clearTimer] = useTimeout(
 				() => {
 					handleClose(null);
@@ -57,6 +49,18 @@ export const XMessage = memo(
 				life,
 				!sticky,
 			);
+			const handleClose = useCallback(
+				(event) => {
+					clearTimer();
+					context?.remove(_pId);
+					if (event) {
+						event.preventDefault();
+						event.stopPropagation();
+					}
+				},
+				[context, _pId, clearTimer],
+			);
+
 			const under = useMemo(
 				() => toast?.underlined || underlined,
 				[toast, underlined],
@@ -69,7 +73,7 @@ export const XMessage = memo(
 					'aria-live': toast ? 'assertive' : 'polite',
 					'aria-atomic': 'true',
 				}),
-				[style],
+				[style, id, toast],
 			);
 			return (
 				<div

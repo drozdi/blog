@@ -14,7 +14,7 @@ export function XList({
 }) {
 	const aRole = useMemo(
 		() => (roleAttrExceptions.includes(tag) ? null : (role ?? 'list')),
-		[tag],
+		[tag, role],
 	);
 	return h(
 		tag,
